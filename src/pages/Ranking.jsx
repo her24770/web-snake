@@ -1,12 +1,13 @@
-import { useNavigate } from 'react-router-dom'
+import Nav from '../components/Nav'
+import Footer from '../components/Footer'
 
 function Ranking() {
-  const navigate = useNavigate()
-
   return (
-    <div>
-      <button onClick={() => navigate('/')}>Volver</button>
-      <p>Ranking</p>
+    <div style={{ minHeight: '100vh', backgroundColor: '#0c1324', color: '#dce1fb', display: 'flex', flexDirection: 'column' }}>
+      <Nav />
+      <main style={{ flex: 1, paddingTop: 64 }}>
+      </main>
+      <Footer />
     </div>
   )
 }
