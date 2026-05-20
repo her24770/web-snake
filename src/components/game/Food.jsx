@@ -1,5 +1,5 @@
 function Food() {
-  return <div>Food</div>
+  return <div className="food" />
 }
 
 export default Food
