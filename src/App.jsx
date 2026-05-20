@@ -1,14 +1,18 @@
-import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Play from './pages/Play'
 import Ranking from './pages/Ranking'
 
 function App() {
-  const [view, setView] = useState('home')
-
-  if (view === 'play') return <Play onNavigate={setView} />
-  if (view === 'ranking') return <Ranking onNavigate={setView} />
-  return <Home onNavigate={setView} />
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/play" element={<Play />} />
+        <Route path="/ranking" element={<Ranking />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App
