@@ -1,8 +1,8 @@
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import Hero from './Hero'
-import RankingPreview from './RankingPreview'
-import Instructions from './Instructions'
+import Hero from '../../components/home/Hero'
+import RankingPreview from '../../components/home/RankingPreview'
+import Instructions from '../../components/home/Instructions'
 import './Home.css'
 
 function Home() {

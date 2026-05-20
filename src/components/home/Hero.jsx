@@ -1,13 +1,8 @@
 import { Link } from 'react-router-dom'
-
-const mockTop3 = [
-  { rank: 1, name: 'ACE', score: 4820 },
-  { rank: 2, name: 'ZER', score: 3210 },
-  { rank: 3, name: 'NXS', score: 2780 },
-]
+import { getFirst } from '../../utils/ranking'
 
 function Hero() {
-  const topPlayer = mockTop3[0]
+  const topPlayer = getFirst()
 
   return (
     <main className="hero">
