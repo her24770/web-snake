@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import Snake from './Snake'
 import Food from './Food'
 
@@ -10,4 +11,4 @@ function Cell({ isSnake, isHead, isFood }) {
   )
 }
 
-export default Cell
+export default memo(Cell)
