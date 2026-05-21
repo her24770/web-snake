@@ -1,8 +1,13 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getFirst } from '../../utils/ranking'
 
 function Hero() {
-  const topPlayer = getFirst()
+  const [topPlayer, setTopPlayer] = useState(null)
+
+  useEffect(() => {
+    getFirst().then(setTopPlayer)
+  }, [])
 
   return (
     <main className="hero">
@@ -14,17 +19,19 @@ function Hero() {
       <div className="hero-actions">
         <Link to="/play" className="hero-btn-start">START GAME</Link>
 
-        <div className="hero-stats">
-          <div className="hero-stat">
-            <p className="hero-stat-label">High Score</p>
-            <p className="hero-stat-value">{topPlayer.score.toLocaleString()}</p>
+        {topPlayer && (
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <p className="hero-stat-label">High Score</p>
+              <p className="hero-stat-value">{topPlayer.score.toLocaleString()}</p>
+            </div>
+            <div className="hero-stat-divider"></div>
+            <div className="hero-stat">
+              <p className="hero-stat-label">Top Player</p>
+              <p className="hero-stat-value">{topPlayer.name}</p>
+            </div>
           </div>
-          <div className="hero-stat-divider"></div>
-          <div className="hero-stat">
-            <p className="hero-stat-label">Top Player</p>
-            <p className="hero-stat-value">{topPlayer.name}</p>
-          </div>
-        </div>
+        )}
       </div>
     </main>
   )

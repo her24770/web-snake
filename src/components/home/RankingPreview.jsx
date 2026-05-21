@@ -1,8 +1,15 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getTop3 } from '../../utils/ranking'
 
 function RankingPreview() {
-  const top3 = getTop3()
+  const [top3, setTop3] = useState([])
+
+  useEffect(() => {
+    getTop3().then(setTop3)
+  }, [])
+
+  if (top3.length === 0) return null
 
   return (
     <section className="home-section home-section--dark">
@@ -29,17 +36,19 @@ function RankingPreview() {
           </div>
         </div>
 
-        <div className="rank-others">
-          {top3.slice(1).map(entry => (
-            <div key={entry.rank} className="rank-card">
-              <div className="rank-card-left">
-                <span className="rank-card-number">{entry.rank}</span>
-                <p className="rank-card-name">{entry.name}</p>
+        {top3.length > 1 && (
+          <div className="rank-others">
+            {top3.slice(1).map(entry => (
+              <div key={entry.rank} className="rank-card">
+                <div className="rank-card-left">
+                  <span className="rank-card-number">{entry.rank}</span>
+                  <p className="rank-card-name">{entry.name}</p>
+                </div>
+                <p className="rank-card-score">{entry.score.toLocaleString()}</p>
               </div>
-              <p className="rank-card-score">{entry.score.toLocaleString()}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )

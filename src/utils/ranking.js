@@ -1,50 +1,53 @@
-const STORAGE_KEY = 'snake_ranking'
+const API_URL = import.meta.env.VITE_API_URL
 
-const mockRanking = [
-  { rank: 1, name: 'ACE', score: 4820 },
-  { rank: 2, name: 'ZER', score: 3210 },
-  { rank: 3, name: 'NXS', score: 2780 },
-  { rank: 4, name: 'KAI', score: 2340 },
-  { rank: 5, name: 'VEX', score: 1980 },
-  { rank: 6, name: 'DOT', score: 1650 },
-  { rank: 7, name: 'RAX', score: 1420 },
-  { rank: 8, name: 'SYN', score: 1100 },
-  { rank: 9, name: 'PHX', score: 870 },
-  { rank: 10, name: 'ZAP', score: 620 },
-]
-
-function loadRanking() {
+async function fetchRanking() {
+  if (!API_URL) return []
   try {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    return stored ? JSON.parse(stored) : mockRanking
+    const res = await fetch(API_URL)
+    if (!res.ok) return []
+    return await res.json()
   } catch {
-    return mockRanking
+    return []
   }
 }
 
-export function getRanking() {
-  return loadRanking()
+export async function getRanking() {
+  return fetchRanking()
 }
 
-export function getTop3() {
-  return loadRanking().slice(0, 3)
+export async function getTop3() {
+  const ranking = await fetchRanking()
+  return ranking.slice(0, 3)
 }
 
-export function getFirst() {
-  return loadRanking()[0]
+export async function getFirst() {
+  const ranking = await fetchRanking()
+  return ranking[0] ?? null
 }
 
-export function isTopScore(score) {
-  const ranking = loadRanking()
-  return ranking.length < 10 || score > ranking[ranking.length - 1].score
+export async function isTopScore(score) {
+  const ranking = await fetchRanking()
+  return ranking.length < 10 || score > (ranking[ranking.length - 1]?.score ?? 0)
 }
 
-export function saveScore(name, score) {
-  const current = loadRanking()
+export async function saveScore(name, score) {
+  const current = await fetchRanking()
   const updated = [...current, { name: name.toUpperCase().slice(0, 3), score }]
     .sort((a, b) => b.score - a.score)
     .slice(0, 10)
     .map((entry, i) => ({ ...entry, rank: i + 1 }))
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+
+  if (!API_URL) return updated
+
+  try {
+    await fetch(API_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updated),
+    })
+  } catch {
+    // silent fail
+  }
+
   return updated
 }

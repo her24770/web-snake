@@ -54,11 +54,15 @@ function Game() {
   useEffect(() => {
     if (state.status !== 'gameover') return
     if (players === 1 && state.score > highScore) setHighScore(state.score)
-    if (players === 1 && isTopScore(state.score)) setShowRecord(true)
+    if (players === 1) {
+      isTopScore(state.score).then(isTop => {
+        if (isTop) setShowRecord(true)
+      })
+    }
   }, [state.status])
 
-  function handleSaveRecord(name) {
-    saveScore(name, state.score)
+  async function handleSaveRecord(name) {
+    await saveScore(name, state.score)
     setShowRecord(false)
   }
 

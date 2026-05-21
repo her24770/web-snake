@@ -1,10 +1,16 @@
+import { useState, useEffect } from 'react'
 import { getRanking } from '../utils/ranking'
 import './Ranking.css'
 
 function Ranking() {
-  const ranking = getRanking()
+  const [ranking, setRanking] = useState([])
+
+  useEffect(() => {
+    getRanking().then(setRanking)
+  }, [])
+
   const top1 = ranking[0]
-  const rest  = ranking.slice(1)
+  const rest = ranking.slice(1)
   const maxScore = top1?.score ?? 1
 
   return (
@@ -20,6 +26,12 @@ function Ranking() {
             <p className="ranking-label">Top 10</p>
             <h1 className="ranking-title">RANKING</h1>
           </div>
+
+          {ranking.length === 0 && (
+            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 12, color: '#4d4354', textAlign: 'center', padding: '60px 0' }}>
+              Sin registros aún — ¡sé el primero!
+            </p>
+          )}
 
           {top1 && (
             <div className="rk-first">
