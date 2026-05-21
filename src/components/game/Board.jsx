@@ -1,14 +1,13 @@
 import Cell from './Cell'
 
-function Board({ gridSize, snake, food }) {
-  //conversion a lista de strings para optimizar busqueda
+function Board({ cols, rows, snake, food }) {
   const snakeKeys = new Set(snake.map(s => `${s.x},${s.y}`))
   const headKey = snake.length > 0 ? `${snake[0].x},${snake[0].y}` : null
   const foodKey = `${food.x},${food.y}`
 
   const cells = []
-  for (let y = 0; y < gridSize; y++) {
-    for (let x = 0; x < gridSize; x++) {
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
       const key = `${x},${y}`
       cells.push(
         <Cell
@@ -25,7 +24,10 @@ function Board({ gridSize, snake, food }) {
     <div className="board-wrapper">
       <div
         className="board"
-        style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)` }}
+        style={{
+          gridTemplateColumns: `repeat(${cols}, 1fr)`,
+          aspectRatio: `${cols} / ${rows}`,
+        }}
       >
         {cells}
       </div>
