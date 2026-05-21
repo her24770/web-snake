@@ -1,0 +1,20 @@
+services:
+  frontend:
+    build:
+      context: .
+      args:
+        VITE_API_URL: https://snake.jhgo.online/api
+    ports:
+      - "127.0.0.1:3120:80"
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    ports:
+      - "127.0.0.1:3121:3121"
+    volumes:
+      - ranking_data:/data
+    restart: unless-stopped
+
+volumes:
+  ranking_data:

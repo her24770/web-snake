@@ -28,6 +28,7 @@ function Game() {
     const keyMapArrows = { ArrowUp: 'UP', ArrowDown: 'DOWN', ArrowLeft: 'LEFT', ArrowRight: 'RIGHT' }
 
     function handleKey(e) {
+      if (document.activeElement?.tagName === 'INPUT') return
       if (keyMap1[e.key]) {
         e.preventDefault()
         nextDir.current = keyMap1[e.key]
