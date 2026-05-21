@@ -1,3 +1,5 @@
+const STORAGE_KEY = 'snake_ranking'
+
 const mockRanking = [
   { rank: 1, name: 'ACE', score: 4820 },
   { rank: 2, name: 'ZER', score: 3210 },
@@ -11,18 +13,38 @@ const mockRanking = [
   { rank: 10, name: 'ZAP', score: 620 },
 ]
 
+function loadRanking() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    return stored ? JSON.parse(stored) : mockRanking
+  } catch {
+    return mockRanking
+  }
+}
+
 export function getRanking() {
-  return mockRanking
+  return loadRanking()
 }
 
 export function getTop3() {
-  return mockRanking.slice(0, 3)
+  return loadRanking().slice(0, 3)
 }
 
 export function getFirst() {
-  return mockRanking[0]
+  return loadRanking()[0]
 }
 
-export function saveScore(_name, _score) {
-  // TODO: conectar a la API del servidor
+export function isTopScore(score) {
+  const ranking = loadRanking()
+  return ranking.length < 10 || score > ranking[ranking.length - 1].score
+}
+
+export function saveScore(name, score) {
+  const current = loadRanking()
+  const updated = [...current, { name: name.toUpperCase().slice(0, 3), score }]
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 10)
+    .map((entry, i) => ({ ...entry, rank: i + 1 }))
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+  return updated
 }

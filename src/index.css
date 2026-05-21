@@ -36,6 +36,16 @@ body {
   background-size: 100% 4px;
 }
 
+kbd {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 5px 9px;
+  background-color: #23293c;
+  border: 1px solid #2e3447;
+  border-radius: 4px;
+  color: #dce1fb;
+}
+
 @keyframes glitch {
   0%   { transform: translate(0); }
   20%  { transform: translate(-2px, 2px); }

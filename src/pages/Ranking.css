@@ -1,0 +1,157 @@
+.ranking-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ranking-page {
+  position: relative;
+  z-index: 10;
+  padding: 80px 24px 64px;
+}
+
+.ranking-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Header */
+.ranking-header {
+  margin-bottom: 40px;
+}
+
+.ranking-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #ddb7ff;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.ranking-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(48px, 10vw, 80px);
+  font-weight: 800;
+  color: #dce1fb;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+/* #1 card */
+.rk-first {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  border-radius: 12px;
+  background: linear-gradient(120deg, rgba(221, 183, 255, 0.1) 0%, rgba(221, 183, 255, 0.03) 100%);
+  border: 1px solid rgba(221, 183, 255, 0.25);
+  box-shadow: 0 0 40px rgba(221, 183, 255, 0.06);
+  margin-bottom: 8px;
+}
+
+.rk-first-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.rk-first-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 56px;
+  font-weight: 900;
+  color: #ddb7ff;
+  line-height: 1;
+  opacity: 0.9;
+}
+
+.rk-first-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #ddb7ff;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.rk-first-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #dce1fb;
+}
+
+.rk-first-right {
+  text-align: right;
+}
+
+.rk-first-score-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #988d9f;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.rk-first-score {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #ddb7ff;
+}
+
+/* Rows #2-#10 */
+.rk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rk-row {
+  display: grid;
+  grid-template-columns: 40px 60px 1fr 80px;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  background-color: #191f31;
+  border: 1px solid #2e3447;
+}
+
+.rk-row-rank {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #4d4354;
+}
+
+.rk-row-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #cfc2d6;
+}
+
+.rk-row-bar-wrap {
+  height: 3px;
+  background-color: #2e3447;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.rk-row-bar {
+  height: 100%;
+  background-color: rgba(221, 183, 255, 0.3);
+  border-radius: 2px;
+}
+
+.rk-row-score {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #dce1fb;
+  text-align: right;
+}

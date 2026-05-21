@@ -305,19 +305,68 @@
 }
 
 /* Instrucciones */
-.home-instructions-placeholder {
-  border-radius: 12px;
-  border: 1px dashed #2e3447;
-  background-color: #191f31;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 24px;
+.instructions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
 }
 
-.home-instructions-placeholder p {
+@media (max-width: 700px) {
+  .instructions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.instruction-card {
+  background-color: #191f31;
+  border: 1px solid #2e3447;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.instruction-card-number {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #ddb7ff;
+  margin-bottom: 12px;
+}
+
+.instruction-card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #dce1fb;
+  margin-bottom: 8px;
+}
+
+.instruction-card-desc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #988d9f;
+  line-height: 1.7;
+}
+
+.instruction-card-desc strong {
+  color: #ddb7ff;
+}
+
+.instruction-keys {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.instruction-keys-row {
+  display: flex;
+  gap: 4px;
+}
+
+.instruction-keys-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
   letter-spacing: 0.1em;
-  color: rgba(207, 194, 214, 0.3);
+  color: #4d4354;
+  margin-bottom: 4px;
 }
