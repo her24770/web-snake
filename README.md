@@ -65,6 +65,9 @@ VITE_API_TARGET=https://snake.jhgo.online
 > `.env.example` sí se incluye como referencia para otros colaboradores.
 
 Si alguna variable no está definida o la API no responde, el ranking simplemente aparecerá vacío sin mostrar ningún mensaje de error.
+Este es un agregado extra, la funcionalidad sigue funcionando aunque no 
+
+La version con api se encuentra en la rama version/deploy-server
 
 ---
 
@@ -208,9 +211,3 @@ Al entrar al juego aparece un modal de inicio sobre el tablero. Al terminar la p
 #### Niveles o aumento de dificultad — +5 pts ✅
 
 El jugador puede configurar el juego antes de empezar: tres tamaños de tablero (Pequeño, Mediano, Grande) y tres velocidades (Lento, Normal, Rápido). Esta configuración es accesible tanto desde el modal de inicio como desde el modal de game over, permitiendo cambiarla entre partidas.
-
----
-
-## Instrucciones originales de la tarea
-
-El enunciado completo con los criterios de evaluación definidos por el instructor está disponible en el historial original del repositorio.
