@@ -52,13 +52,19 @@ cp .env.example .env
 Contenido de `.env.example`:
 
 ```
-VITE_API_URL=https://snake.jhgo.online/api
+VITE_API_URL=/api
+VITE_API_TARGET=https://snake.jhgo.online
 ```
+
+| Variable | Descripción |
+|---|---|
+| `VITE_API_URL` | Ruta que usa el cliente para hacer fetch (relativa, evita CORS) |
+| `VITE_API_TARGET` | Dominio al que el proxy de Vite redirige en desarrollo |
 
 > `.env` está en `.gitignore` y **no se sube al repositorio**.
 > `.env.example` sí se incluye como referencia para otros colaboradores.
 
-Si la variable no está definida o la API no responde, el ranking simplemente aparecerá vacío sin mostrar ningún mensaje de error.
+Si alguna variable no está definida o la API no responde, el ranking simplemente aparecerá vacío sin mostrar ningún mensaje de error.
 
 ---
 
