@@ -311,6 +311,48 @@
   color: #988d9f;
 }
 
+/* === RECORD INPUT === */
+.record-input {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 12px 0;
+  background-color: #23293c;
+  border: 1px solid #2e3447;
+  border-radius: 8px;
+  color: #ddb7ff;
+  outline: none;
+  margin-bottom: 4px;
+  transition: border-color 0.15s;
+}
+
+.record-input:focus {
+  border-color: #ddb7ff;
+}
+
+.record-input::placeholder {
+  color: #4d4354;
+  letter-spacing: 0.3em;
+}
+
+.record-input-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #988d9f;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.game-modal-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
 /* === CONTROLS HINT === */
 .game-controls {
   margin-top: 20px;

@@ -4,9 +4,11 @@ import Score from '../components/game/Score'
 import ModalStart from '../components/game/ModalStart'
 import ModalGameOver from '../components/game/ModalGameOver'
 import ModalConfig from '../components/game/ModalConfig'
+import ModalNuevoRecord from '../components/game/ModalNuevoRecord'
 import InstruccionesUnJugador from '../components/game/InstruccionesUnJugador'
 import InstruccionesDosJugadores from '../components/game/InstruccionesDosJugadores'
 import { SIZES, SPEEDS, initState, gameTick } from './gameLogic'
+import { isTopScore, saveScore } from '../utils/ranking'
 import './game.css'
 
 function Game() {
@@ -15,13 +17,14 @@ function Game() {
   const speed   = SPEEDS[config.speed].ms
   const players = config.players ?? 1
 
-  const [state, setState]       = useState(() => initState(cols, rows, players))
+  const [state, setState]         = useState(() => initState(cols, rows, players))
   const [highScore, setHighScore] = useState(0)
+  const [showRecord, setShowRecord] = useState(false)
   const nextDir  = useRef('RIGHT')
   const nextDir2 = useRef('LEFT')
 
   useEffect(() => {
-    const keyMap1     = { w: 'UP', W: 'UP', s: 'DOWN', S: 'DOWN', a: 'LEFT', A: 'LEFT', d: 'RIGHT', D: 'RIGHT' }
+    const keyMap1      = { w: 'UP', W: 'UP', s: 'DOWN', S: 'DOWN', a: 'LEFT', A: 'LEFT', d: 'RIGHT', D: 'RIGHT' }
     const keyMapArrows = { ArrowUp: 'UP', ArrowDown: 'DOWN', ArrowLeft: 'LEFT', ArrowRight: 'RIGHT' }
 
     function handleKey(e) {
@@ -49,18 +52,25 @@ function Game() {
   }, [state.status, cols, rows, speed])
 
   useEffect(() => {
-    if (state.status === 'gameover' && players === 1 && state.score > highScore) {
-      setHighScore(state.score)
-    }
+    if (state.status !== 'gameover') return
+    if (players === 1 && state.score > highScore) setHighScore(state.score)
+    if (players === 1 && isTopScore(state.score)) setShowRecord(true)
   }, [state.status])
+
+  function handleSaveRecord(name) {
+    saveScore(name, state.score)
+    setShowRecord(false)
+  }
 
   function startGame() {
     nextDir.current  = 'RIGHT'
     nextDir2.current = 'LEFT'
+    setShowRecord(false)
     setState({ ...initState(cols, rows, players), status: 'playing' })
   }
 
   function openConfig() {
+    setShowRecord(false)
     setState(prev => ({ ...prev, status: 'config' }))
   }
 
@@ -85,7 +95,11 @@ function Game() {
           <ModalConfig config={config} onApply={applyConfig} />
         )}
 
-        {state.status === 'gameover' && (
+        {state.status === 'gameover' && showRecord && (
+          <ModalNuevoRecord score={state.score} onSave={handleSaveRecord} />
+        )}
+
+        {state.status === 'gameover' && !showRecord && (
           <ModalGameOver
             score={state.score}
             score2={state.score2}
