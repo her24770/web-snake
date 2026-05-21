@@ -80,7 +80,7 @@ function Game() {
         )}
 
         {state.status === 'gameover' && (
-          <ModalGameOver score={state.score} onRestart={startGame} />
+          <ModalGameOver score={state.score} onRestart={startGame} onConfig={openConfig} />
         )}
       </div>
 

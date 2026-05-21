@@ -1,7 +1,7 @@
 export const SIZES = {
-  pequeño: { cols: 10, rows: 10, label: 'Pequeño', desc: '10 × 10' },
-  mediano: { cols: 15, rows: 10, label: 'Mediano', desc: '15 × 10' },
-  grande:  { cols: 20, rows: 15, label: 'Grande',  desc: '20 × 15' },
+  pequeño: { cols: 15, rows: 10, label: 'Pequeño', desc: '10 × 10' },
+  mediano: { cols: 20, rows: 15, label: 'Mediano', desc: '15 × 10' },
+  grande:  { cols: 25, rows: 15, label: 'Grande',  desc: '20 × 15' },
 }
 
 export const SPEEDS = {

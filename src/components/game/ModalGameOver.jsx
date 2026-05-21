@@ -1,4 +1,4 @@
-function ModalGameOver({ score, onRestart }) {
+function ModalGameOver({ score, onRestart, onConfig }) {
   return (
     <div className="game-modal">
       <div className="game-modal-card">
@@ -8,6 +8,7 @@ function ModalGameOver({ score, onRestart }) {
         <p className="game-modal-score">{score}</p>
         <p className="game-modal-score-label">Puntaje final</p>
         <button className="game-modal-btn" onClick={onRestart}>INTENTAR DE NUEVO</button>
+        <button className="game-modal-btn-secondary" onClick={onConfig}>ELEGIR MODO</button>
       </div>
     </div>
   )
